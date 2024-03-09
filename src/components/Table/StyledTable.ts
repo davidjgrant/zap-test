@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledTable = styled.table<{ loading: boolean }>`
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 24px;
 
   th {
     font-size: 12px;
@@ -70,4 +71,5 @@ export const StyledTableValueWrapper = styled.span<{ status?: string }>`
 
 export const StyledTableValue = styled.td`
   color: #1A1D1F !important;
+  width: 15%;
 `;
