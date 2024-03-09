@@ -4,6 +4,8 @@ import {
   StyledTableValue,
   StyledTableValueWrapper,
 } from './StyledTable';
+import { currencyFormater } from '@/utils/currencyFormater';
+import { dateConvertor } from '@/utils/dateConvertor';
 
 export const Table = ({
   results,
@@ -88,6 +90,15 @@ export const Table = ({
     return <div>No results</div>;
   }
 
+  const dateOptions = {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  };
+
   return (
     <StyledTable loading={isLoading}>
       <thead>
@@ -99,14 +110,12 @@ export const Table = ({
       </thead>
       <tbody>
         {results.map((payout, index) => {
-          // set the date to this format: Fri, Apr 9, 18:03
-          const date = new Date(payout.dateAndTime).toLocaleString('en-US', {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-          });
+          // A nice little date formater utility function - just encase we want to swap out the date format
+          const date = dateConvertor(payout.dateAndTime, dateOptions);
+
+          // A nice little currency formater utility function - just encase we want to swap out the currency
+          const priceValue = Number(payout.value.split('$')[1]);
+          const price = currencyFormater('USD', priceValue);
 
           return (
             <tr key={index}>
@@ -116,7 +125,7 @@ export const Table = ({
                   {payout.status}
                 </StyledTableValueWrapper>
               </td>
-              <StyledTableValue>{payout.value}</StyledTableValue>
+              <StyledTableValue>{price}</StyledTableValue>
             </tr>
           );
         })}
