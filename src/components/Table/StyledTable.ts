@@ -32,7 +32,7 @@ export const StyledTable = styled.table<{ loading: boolean }>`
   tr:nth-child(even) {
     background-color:#F4F4F480;
 
-    ${props => props.loading && `
+    ${({ loading }) => loading && `
       // animate the background shimmer
       @keyframes loading {
         0% {

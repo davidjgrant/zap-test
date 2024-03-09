@@ -7,7 +7,7 @@ export const StyledHeader = styled.header`
   gap: 24px;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 
   @media screen and (min-width: 768px) {
     flex-direction: row;

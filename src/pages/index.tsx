@@ -36,7 +36,7 @@ export default function Home() {
     <StyledPage>
       <Title text="Payouts" size="h1" />
       <StyledHeader>
-        <Title text="Payout History" size="h2" />
+        <Title text="Payout History" size="h2" styled={true} />
         <SearchBar setSearchQuery={setSearchQuery} />
       </StyledHeader>
       <Table results={payoutResults} isLoading={isLoading} isError={isError} />

@@ -1,13 +1,18 @@
 import React from 'react';
+import { StyledTitle } from './StyledTitle';
 
 export const Title = ({
   text,
-  size = 'h1',
+  size,
+  styled,
 }: {
   text: string;
-  size?: string;
+  size: keyof JSX.IntrinsicElements;
+  styled?: boolean;
 }) => {
-  const TitleTag = size as keyof JSX.IntrinsicElements;
-
-  return <TitleTag key={text}>{text}</TitleTag>;
+  return (
+    <StyledTitle as={size} size={size} styled={styled ? styled : false}>
+      {text}
+    </StyledTitle>
+  );
 };
