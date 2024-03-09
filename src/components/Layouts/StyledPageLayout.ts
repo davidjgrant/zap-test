@@ -6,6 +6,6 @@ export const StyledPage = styled.main`
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  padding: 24px 29px 994px;
+  padding: 24px 32px;
   max-width: 1440px;
 `;
