@@ -1,4 +1,6 @@
 import { query } from '@/types';
+import { StyledPagination } from './StyledPagination';
+import { StyledButton } from '../Button/StyledButton';
 
 export const Pagination = ({
   query,
@@ -16,11 +18,11 @@ export const Pagination = ({
   };
 
   return (
-    <div>
-      <button disabled={query.page <= 1} onClick={prevPage}>
+    <StyledPagination>
+      <StyledButton disabled={query.page <= 1} onClick={prevPage}>
         Previous
-      </button>
-      <button onClick={nextPage}>Next</button>
-    </div>
+      </StyledButton>
+      <StyledButton onClick={nextPage}>Next</StyledButton>
+    </StyledPagination>
   );
 };

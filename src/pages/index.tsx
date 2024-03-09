@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { Table } from '@/components/Table';
@@ -8,8 +6,8 @@ import { Pagination } from '@/components/Pagination';
 import { SearchBar } from '@/components/SearchBar';
 import { Payout, PayoutData, query as QueryType } from '@/types';
 import { Title } from '@/components/Title';
-
-const inter = Inter({ subsets: ['latin'] });
+import { StyledPage } from '@/components/Layouts/StyledPageLayout';
+import { StyledHeader } from '@/components/Layouts/StyledHeader';
 
 export default function Home() {
   const [query, setQuery] = useState<QueryType>({ page: 1, limit: 10 });
@@ -43,19 +41,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={`${styles.main} ${inter.className}`}>
-          <Title styles={styles.title} text="Payouts" size="h1" />
-          <div className={styles.header}>
-            <Title styles={styles.subtitle} text="Payout History" size="h2" />
-            <SearchBar setSearchQuery={setSearchQuery} />
-          </div>
-          <Table
-            results={payoutResults}
-            isLoading={isLoading}
-            isError={isError}
-          />
-          {data && <Pagination query={query} setQuery={setQuery} />}
-      </main>
+      <StyledPage>
+        <Title text="Payouts" size="h1" />
+        <StyledHeader>
+          <Title text="Payout History" size="h2" />
+          <SearchBar setSearchQuery={setSearchQuery} />
+        </StyledHeader>
+        <Table
+          results={payoutResults}
+          isLoading={isLoading}
+          isError={isError}
+        />
+        {data && <Pagination query={query} setQuery={setQuery} />}
+      </StyledPage>
     </>
   );
 }

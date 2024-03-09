@@ -1,4 +1,9 @@
 import { PayoutData } from '@/types';
+import {
+  StyledTable,
+  StyledTableValue,
+  StyledTableValueWrapper,
+} from './StyledTable';
 
 export const Table = ({
   results,
@@ -10,7 +15,69 @@ export const Table = ({
   isError?: boolean;
 }) => {
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <StyledTable loading={isLoading}>
+        <thead>
+          <tr>
+            <th>Date and Time</th>
+            <th>Status</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </StyledTable>
+    );
   }
 
   if (isError) {
@@ -22,7 +89,7 @@ export const Table = ({
   }
 
   return (
-    <table>
+    <StyledTable loading={isLoading}>
       <thead>
         <tr>
           <th>Date and Time</th>
@@ -31,14 +98,29 @@ export const Table = ({
         </tr>
       </thead>
       <tbody>
-        {results.map((payout, index) => (
-          <tr key={index}>
-            <td>{payout.dateAndTime}</td>
-            <td>{payout.status}</td>
-            <td>{payout.value}</td>
-          </tr>
-        ))}
+        {results.map((payout, index) => {
+          // set the date to this format: Fri, Apr 9, 18:03
+          const date = new Date(payout.dateAndTime).toLocaleString('en-US', {
+            weekday: 'short',
+            month: 'short',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+          });
+
+          return (
+            <tr key={index}>
+              <td>{date}</td>
+              <td>
+                <StyledTableValueWrapper status={payout.status}>
+                  {payout.status}
+                </StyledTableValueWrapper>
+              </td>
+              <StyledTableValue>{payout.value}</StyledTableValue>
+            </tr>
+          );
+        })}
       </tbody>
-    </table>
+    </StyledTable>
   );
 };

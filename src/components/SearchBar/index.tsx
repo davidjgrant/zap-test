@@ -1,6 +1,11 @@
 'use client';
 
 import { useState } from 'react';
+import {
+  StyledSearchButton,
+  StyledSearchForm,
+  StyledSearchInput,
+} from './StyledSearchBar';
 
 export const SearchBar = ({
   setSearchQuery,
@@ -19,14 +24,14 @@ export const SearchBar = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <StyledSearchForm onSubmit={handleSubmit}>
+      <StyledSearchInput
         type="text"
         value={searchTerm}
         onChange={handleSearchChange}
         placeholder="Search payouts..."
       />
-      <button type="submit">Search</button>
-    </form>
+      <StyledSearchButton>Search</StyledSearchButton>
+    </StyledSearchForm>
   );
 };
